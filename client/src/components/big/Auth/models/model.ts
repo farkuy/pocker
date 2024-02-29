@@ -1,0 +1,24 @@
+import {z} from "zod";
+
+export const signInSchema = z.object({
+    email: z
+        .string()
+        .toLowerCase()
+        .min(1, "Введите эл.почту")
+        .email("Введите корректную эл.почту"),
+    password: z.string().min(1, "Введите пароль"),
+});
+
+export const signUpSchema = z.object({
+    email: z
+        .string()
+        .toLowerCase()
+        .min(1, "Введите эл.почту")
+        .email("Введите корректную эл.почту"),
+    password: z.string().min(1, "Введите пароль"),
+    repeatPassword: z.string().min(1, "Повторите пароль"),
+    })
+    .refine((data) => data.password === data.repeatPassword, {
+        message: "Пароли не совпадают",
+        path: ["repeatPassword"],
+    });
