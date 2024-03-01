@@ -8,17 +8,17 @@ import InputForSignUp from "../../../mini/InputForSignUp";
 
 const authField: IField[] = [
     {
-        name: 'email',
+        name: NameIField.email,
         placeholder: 'Ваш email',
         type: TypeInput.text,
     },
     {
-        name: 'password',
+        name: NameIField.password,
         placeholder: 'Ваш пароль',
         type: TypeInput.password,
     },
     {
-        name: 'repeatPassword',
+        name: NameIField.repeatPassword,
         placeholder: 'Повторите пароль',
         type: TypeInput.password,
     },
