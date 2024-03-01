@@ -1,24 +1,24 @@
 import React from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
-import {IField, IRegister, TypeInput} from "../models/IAuth";
-import {signUpSchema} from "../models/model";
+import {IField, NameIField, TypeInput} from "../models/IAuth";
+import {FormSchemaSigUp, signUpSchema} from "../models/model";
 import InputForSignUp from "../../../mini/InputForSignUp";
 
 
 const authField: IField[] = [
     {
-        name: 'email',
+        name: NameIField.email,
         placeholder: 'Ваш email',
         type: TypeInput.text,
     },
     {
-        name: 'password',
+        name: NameIField.password,
         placeholder: 'Ваш пароль',
         type: TypeInput.password,
     },
     {
-        name: 'repeatPassword',
+        name: NameIField.repeatPassword,
         placeholder: 'Повторите пароль',
         type: TypeInput.password,
     },
@@ -31,7 +31,7 @@ const AuthModal = () => {
         handleSubmit,
         reset,
         setFocus,
-        formState: { isDirty, isSubmitting, errors },} = useForm<IRegister>({
+        formState: { isDirty, isSubmitting, errors },} = useForm<FormSchemaSigUp>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
             email: '',
@@ -40,7 +40,7 @@ const AuthModal = () => {
         }
     });
 
-    const registerSubmit: SubmitHandler<IRegister> = (data) => {
+    const registerSubmit: SubmitHandler<FormSchemaSigUp> = (data) => {
         alert('Вы зарегестрировались')
     };
 
@@ -51,7 +51,6 @@ const AuthModal = () => {
         >
             {
                 authField.map((item, index) => {
-                    // @ts-ignore
                     return (
                         <InputForSignUp
                             placeholder={item.placeholder}

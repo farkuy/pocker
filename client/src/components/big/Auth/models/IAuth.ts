@@ -19,7 +19,7 @@ export enum TypeInput {
 }
 
 export interface IField {
-    name: string,
+    name: NameIField,
     placeholder: string,
     type: TypeInput,
 }
@@ -44,5 +44,5 @@ export interface IInputForSignUp extends IForTest{
     placeholder?: string,
     typeInputForSignUp: TypeInput,
     error?: FieldError,
-    register: IRegister
+    register: IRegisterHook
 }

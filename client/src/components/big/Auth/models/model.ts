@@ -22,3 +22,5 @@ export const signUpSchema = z.object({
         message: "Пароли не совпадают",
         path: ["repeatPassword"],
     });
+
+export type FormSchemaSigUp = z.infer<typeof signUpSchema>;
