@@ -19,7 +19,7 @@ export enum TypeInput {
 }
 
 export interface IField {
-    name: "email" | "password" | "repeatPassword",
+    name: string,
     placeholder: string,
     type: TypeInput,
 }
@@ -30,7 +30,7 @@ export type FieldError = {
     types?: MultipleFieldErrors,
     message?: Message,
 }
-export interface IRegister {
+export interface IRegisterHook {
     onChange: ChangeHandler;
     onBlur: ChangeHandler;
     name: string;
