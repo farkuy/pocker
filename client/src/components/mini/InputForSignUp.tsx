@@ -15,6 +15,7 @@ const InputForSignUp:FC<IInputForSignUp> = (
     return (
         <div>
             <input
+                className={'text-red-600'}
                 type={typeInputForSignUp}
                 data-testid={testId}
                 placeholder={placeholder}
@@ -22,6 +23,7 @@ const InputForSignUp:FC<IInputForSignUp> = (
             />
             {error && (
                 <div
+                    className={'text-red-600 text-[14px]'}
                     data-testid={errorTestId}
                 >
                     {error.message}

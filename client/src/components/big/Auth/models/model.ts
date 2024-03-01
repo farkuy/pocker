@@ -23,4 +23,5 @@ export const signUpSchema = z.object({
         path: ["repeatPassword"],
     });
 
+export type FormSchemaSigIn = z.infer<typeof signInSchema>
 export type FormSchemaSigUp = z.infer<typeof signUpSchema>;

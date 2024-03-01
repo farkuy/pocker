@@ -25,12 +25,12 @@ const authField: IField[] = [
 ]
 
 const AuthModal = () => {
-    // @ts-ignore
     const {
         register,
         handleSubmit,
         reset,
         setFocus,
+        trigger,
         formState: { isDirty, isSubmitting, errors },} = useForm<FormSchemaSigUp>({
         resolver: zodResolver(signUpSchema),
         defaultValues: {
@@ -45,32 +45,36 @@ const AuthModal = () => {
     };
 
     return (
-        <form
-            data-testid="add_new_user"
-            onSubmit={handleSubmit(registerSubmit)}
-        >
-            {
-                authField.map((item, index) => {
-                    return (
-                        <InputForSignUp
-                            placeholder={item.placeholder}
-                            register={register(item.name)}
-                            typeInputForSignUp={item.type}
-                            error={errors[item.name]}
-                            testId={`new_user_${item.name}`}
-                            errorTestId={`error_message_${item.name}`}
-                            key={index}
-                        />
-                    )
-                })
-            }
-            <div>
-                <button
-                >
-                    Регистрация
-                </button>
-            </div>
-        </form>
+        <div>
+
+            <form
+                data-testid="add_new_user"
+                onSubmit={handleSubmit(registerSubmit)}
+                className={'absolute top-1/2 left-1/2'}
+            >
+                {
+                    authField.map((item, index) => {
+                        return (
+                            <InputForSignUp
+                                placeholder={item.placeholder}
+                                register={register(item.name)}
+                                typeInputForSignUp={item.type}
+                                error={errors[item.name]}
+                                testId={`new_user_${item.name}`}
+                                errorTestId={`error_message_${item.name}`}
+                                key={index}
+                            />
+                        )
+                    })
+                }
+                <div>
+                    <button
+                    >
+                        Регистрация
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }
 
