@@ -1,24 +1,24 @@
 import React from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
-import {IField, IRegister, NameIField, TypeInput} from "../models/IAuth";
+import {IField, IRegister, TypeInput} from "../models/IAuth";
 import {signUpSchema} from "../models/model";
 import InputForSignUp from "../../../mini/InputForSignUp";
 
 
 const authField: IField[] = [
     {
-        name: NameIField.email,
+        name: 'email',
         placeholder: 'Ваш email',
         type: TypeInput.text,
     },
     {
-        name: NameIField.password,
+        name: 'password',
         placeholder: 'Ваш пароль',
         type: TypeInput.password,
     },
     {
-        name: NameIField.repeatPassword,
+        name: 'repeatPassword',
         placeholder: 'Повторите пароль',
         type: TypeInput.password,
     },
@@ -33,6 +33,11 @@ const AuthModal = () => {
         setFocus,
         formState: { isDirty, isSubmitting, errors },} = useForm<IRegister>({
         resolver: zodResolver(signUpSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+            repeatPassword: '',
+        }
     });
 
     const registerSubmit: SubmitHandler<IRegister> = (data) => {
