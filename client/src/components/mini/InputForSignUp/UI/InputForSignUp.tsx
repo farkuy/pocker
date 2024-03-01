@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IInputForSignUp} from "../big/Auth/models/IAuth";
+import {IInputForSignUp} from "../model/IInputForSignUp";
 
 const InputForSignUp:FC<IInputForSignUp> = (
     {
@@ -11,11 +11,12 @@ const InputForSignUp:FC<IInputForSignUp> = (
         register
     }
 ) => {
-
     return (
-        <div>
+        <div
+            className={'mb-[10px]'}
+        >
             <input
-                className={'text-red-600'}
+                className={'w-full font-semibold p-[12px] bg-[#F8F1FF] rounded-md h-[40px]'}
                 type={typeInputForSignUp}
                 data-testid={testId}
                 placeholder={placeholder}
@@ -23,7 +24,7 @@ const InputForSignUp:FC<IInputForSignUp> = (
             />
             {error && (
                 <div
-                    className={'text-red-600 text-[14px]'}
+                    className={'text-red-600 text-[14px] text-center'}
                     data-testid={errorTestId}
                 >
                     {error.message}

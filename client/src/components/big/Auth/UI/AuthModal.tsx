@@ -3,10 +3,16 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
 import {IField, NameIField, TypeInput} from "../models/IAuth";
 import {FormSchemaSigUp, signUpSchema} from "../models/model";
-import InputForSignUp from "../../../mini/InputForSignUp";
+import InputForSignUp from "../../../mini/InputForSignUp/UI/InputForSignUp";
+import Buttons from "../../../mini/Button/Buttons";
 
 
 const authField: IField[] = [
+    {
+        name: NameIField.name,
+        placeholder: 'Ваше имя',
+        type: TypeInput.text,
+    },
     {
         name: NameIField.email,
         placeholder: 'Ваш email',
@@ -46,11 +52,12 @@ const AuthModal = () => {
 
     return (
         <div>
-
+            <div className={'w-screen h-screen bg-[#985ACE] backdrop-opacity-10'}>
+            </div>
             <form
                 data-testid="add_new_user"
                 onSubmit={handleSubmit(registerSubmit)}
-                className={'absolute top-1/2 left-1/2'}
+                className={'absolute top-1/2 left-1/2 max-w-[500px] w-full px-[50px] py-[60px] z-50 rounded-md bg-white'}
             >
                 {
                     authField.map((item, index) => {
@@ -68,10 +75,11 @@ const AuthModal = () => {
                     })
                 }
                 <div>
-                    <button
+                    <Buttons
+                        style={'text-white min-h-[40px] bg-[#985ACE]'}
                     >
                         Регистрация
-                    </button>
+                    </Buttons>
                 </div>
             </form>
         </div>

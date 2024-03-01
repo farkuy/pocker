@@ -2,13 +2,15 @@ import {ChangeHandler, Message, MultipleFieldErrors, Ref} from "react-hook-form"
 import React from "react";
 
 export interface IRegister {
+    name: string,
     email: string,
     password: string,
     repeatPassword: string,
 }
 
 export enum NameIField {
-    email= 'email',
+    name = 'name',
+    email = 'email',
     password = 'password',
     repeatPassword = 'repeatPassword',
 }
@@ -39,10 +41,4 @@ export interface IRegisterHook {
 export interface IForTest {
     testId?: string,
     errorTestId: string,
-}
-export interface IInputForSignUp extends IForTest{
-    placeholder?: string,
-    typeInputForSignUp: TypeInput,
-    error?: FieldError,
-    register: IRegisterHook
 }
