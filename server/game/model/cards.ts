@@ -1,4 +1,4 @@
-import {createDeck} from "../gameLogic/createDeck";
+import {decksFunction} from "../gameLogic/decksFunction";
 
 export enum Suit {
     Hearts = 'Hearts',
@@ -18,8 +18,8 @@ export class Card {
     }
 }
 
-const suits = [Suit.Hearts, Suit.Diamonds, Suit.Clubs, Suit.Spades];
-const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+export const suits = [Suit.Hearts, Suit.Diamonds, Suit.Clubs, Suit.Spades];
+export const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
-export const cardsDeckTexasHoldEm: Card[] = createDeck(suits, ranks);
-
+export const cardsDeckTexasHoldEm: Card[] = decksFunction(suits, ranks);
+console.log(cardsDeckTexasHoldEm)
