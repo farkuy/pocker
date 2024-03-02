@@ -1,7 +1,10 @@
+import {cardsDeckTexasHoldEm} from "./game/model/cards";
+
 const express = require('express')
 const {graphqlHTTP} = require('express-graphql')
 const schema = require('./schema')
 const cors = require('cors')
+const sequelize = require('./db')
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,4 +16,13 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
 
 }))
-app.listen(PORT, () => console.log(`server started on port ${PORT}`))
+
+const start = async () => {
+    try {
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+    } catch (e) {
+        console.log(e)
+    }
+}
