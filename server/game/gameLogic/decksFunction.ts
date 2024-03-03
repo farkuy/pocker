@@ -1,5 +1,4 @@
 import {Card, Suit} from "../model/cards";
-
 export function decksFunction(suits: Suit[], ranks: string[]): Card[] {
     const deck: Card[] = [];
 

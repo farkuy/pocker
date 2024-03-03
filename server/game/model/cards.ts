@@ -1,5 +1,3 @@
-import {decksFunction} from "../gameLogic/decksFunction";
-
 export enum Suit {
     Hearts = 'Hearts',
     Diamonds = 'Diamonds',
@@ -21,5 +19,3 @@ export class Card {
 export const suits = [Suit.Hearts, Suit.Diamonds, Suit.Clubs, Suit.Spades];
 export const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 
-export const cardsDeckTexasHoldEm: Card[] = decksFunction(suits, ranks);
-console.log(cardsDeckTexasHoldEm)
