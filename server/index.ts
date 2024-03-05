@@ -1,10 +1,8 @@
-import {cardsDeckTexasHoldEm} from "./game/model/cards";
 
 require('dotenv').config()
 const express = require('express')
 const sequelize = require('./db')
 const {graphqlHTTP} = require('express-graphql')
-const schema = require('./schema')
 const cors = require('cors')
 
 const PORT = 5000;

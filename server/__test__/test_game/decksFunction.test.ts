@@ -1,5 +1,6 @@
 import {decksFunction, randomShuffle} from "../../game/gameLogic/decksFunction";
 import {Card, ranks, Suit, suits} from "../../game/model/cards";
+import {playerCombination} from "../../game/gameLogic/combinations";
 
 describe('TexasHoldEmTest', () => {
     const deck = [
@@ -56,7 +57,11 @@ describe('TexasHoldEmTest', () => {
         new Card('King', Suit.Spades, 13),
         new Card('Ace', Suit.Spades, 14)
     ];
-    const cardsDeckTexasHoldEm: Card[] = decksFunction(suits, ranks);
+    let cardsDeckTexasHoldEm: Card[] = decksFunction(suits, ranks);
+
+    afterEach(() => {
+        cardsDeckTexasHoldEm = JSON.parse(JSON.stringify(deck));
+    })
 
     it('createDeckTexasHoldEm', () => {
         expect(cardsDeckTexasHoldEm.length).toBe(deck.length);
@@ -67,5 +72,64 @@ describe('TexasHoldEmTest', () => {
         randomShuffle(cardsDeckTexasHoldEm);
         expect(cardsDeckTexasHoldEm.length).toBe(deck.length);
         expect(cardsDeckTexasHoldEm).not.toEqual(deck); //В теории возможно, что карты вернуться в первоначальную последовательнось в колоде. Их же не в киоске заряжают
+    })
+
+    it('win', () => {
+        const playerCards1: Card[] = [
+            new Card('Ace', Suit.Hearts, 14),
+            new Card('7', Suit.Clubs, 7)
+        ];
+        const board1: Card[] = [
+            new Card('3', Suit.Spades, 3),
+            new Card('4', Suit.Diamonds, 4),
+            new Card('5', Suit.Hearts, 5),
+            new Card('6', Suit.Clubs, 6),
+            new Card('10', Suit.Spades, 10)
+        ];
+        const street1 = playerCombination(playerCards1, board1);
+
+        const playerCards2: Card[] = [
+            new Card('8', Suit.Hearts, 8),
+            new Card('9', Suit.Clubs, 9)
+        ];
+        const board2: Card[] = [
+            new Card('Ace', Suit.Spades, 14),
+            new Card('7', Suit.Diamonds, 7),
+            new Card('6', Suit.Hearts, 6),
+            new Card('5', Suit.Clubs, 5),
+            new Card('4', Suit.Spades, 4)
+        ];
+        const street2 = playerCombination(playerCards2, board2);
+
+        const playerCards3: Card[] = [
+            new Card('King', Suit.Hearts, 13),
+            new Card('Queen', Suit.Clubs, 12)
+        ];
+
+        const board3: Card[] = [
+            new Card('10', Suit.Spades, 10),
+            new Card('9', Suit.Diamonds, 9),
+            new Card('8', Suit.Hearts, 8),
+            new Card('7', Suit.Clubs, 7),
+            new Card('3', Suit.Spades, 3)
+        ];
+
+        const notStreet1 = playerCombination(playerCards3, board3);
+
+        const playerCards4: Card[] = [
+            new Card('Ace', Suit.Hearts, 14),
+            new Card('3', Suit.Clubs, 3)
+        ];
+
+        const board4: Card[] = [
+            new Card('10', Suit.Spades, 10),
+            new Card('9', Suit.Diamonds, 9),
+            new Card('5', Suit.Hearts, 5),
+            new Card('4', Suit.Clubs, 4),
+            new Card('2', Suit.Spades, 2)
+        ];
+
+        const notStreet4 = playerCombination(playerCards4, board4);
+        console.log(notStreet4);
     })
 })
