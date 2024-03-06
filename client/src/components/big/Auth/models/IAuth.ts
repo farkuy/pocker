@@ -8,6 +8,11 @@ export interface IRegister {
     repeatPassword: string,
 }
 
+export enum NameIFiendSignIn {
+    email = 'email',
+    password = 'password',
+}
+
 export enum NameIField {
     name = 'name',
     email = 'email',
@@ -22,6 +27,12 @@ export enum TypeInput {
 
 export interface IField {
     name: NameIField,
+    placeholder: string,
+    type: TypeInput,
+}
+
+export interface IFieldSign {
+    name: NameIFiendSignIn,
     placeholder: string,
     type: TypeInput,
 }
@@ -41,4 +52,9 @@ export interface IRegisterHook {
 export interface IForTest {
     testId?: string,
     errorTestId: string,
+}
+
+export enum RegOrSig {
+    signIn = 'signIn',
+    signUp = 'signUp'
 }

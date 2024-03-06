@@ -1,87 +1,44 @@
-import React from 'react';
-import {SubmitHandler, useForm} from "react-hook-form";
-import { zodResolver } from '@hookform/resolvers/zod'
-import {IField, NameIField, TypeInput} from "../models/IAuth";
-import {FormSchemaSigUp, signUpSchema} from "../models/model";
-import InputForSignUp from "../../../mini/InputForSignUp/UI/InputForSignUp";
+import React, {useState} from 'react';
+import {RegOrSig} from "../models/IAuth";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import Buttons from "../../../mini/Button/Buttons";
 
-
-const authField: IField[] = [
-    {
-        name: NameIField.name,
-        placeholder: 'Ваше имя',
-        type: TypeInput.text,
-    },
-    {
-        name: NameIField.email,
-        placeholder: 'Ваш email',
-        type: TypeInput.text,
-    },
-    {
-        name: NameIField.password,
-        placeholder: 'Ваш пароль',
-        type: TypeInput.password,
-    },
-    {
-        name: NameIField.repeatPassword,
-        placeholder: 'Повторите пароль',
-        type: TypeInput.password,
-    },
-]
-
 const AuthModal = () => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        setFocus,
-        trigger,
-        formState: { isDirty, isSubmitting, errors },} = useForm<FormSchemaSigUp>({
-        resolver: zodResolver(signUpSchema),
-        defaultValues: {
-            email: '',
-            password: '',
-            repeatPassword: '',
-        }
-    });
 
-    const registerSubmit: SubmitHandler<FormSchemaSigUp> = (data) => {
-        alert('Вы зарегестрировались')
-    };
+    const [regOrSig, setRegOrSig] = useState<RegOrSig>(RegOrSig.signUp)
 
     return (
-        <div>
-            <div className={'w-screen h-screen bg-[#985ACE] backdrop-opacity-10'}>
-            </div>
-            <form
-                data-testid="add_new_user"
-                onSubmit={handleSubmit(registerSubmit)}
-                className={'absolute top-1/2 left-1/2 max-w-[500px] w-full px-[50px] py-[60px] z-50 rounded-md bg-white'}
-            >
-                {
-                    authField.map((item, index) => {
-                        return (
-                            <InputForSignUp
-                                placeholder={item.placeholder}
-                                register={register(item.name)}
-                                typeInputForSignUp={item.type}
-                                error={errors[item.name]}
-                                testId={`new_user_${item.name}`}
-                                errorTestId={`error_message_${item.name}`}
-                                key={index}
-                            />
-                        )
-                    })
-                }
-                <div>
-                    <Buttons
-                        style={'text-white min-h-[40px] bg-[#985ACE]'}
+        <div className={'flex justify-center items-center w-screen h-screen bg-[#985ACE] backdrop-opacity-10'}>
+
+            <div className={'max-w-[500px] tra w-full px-[50px] py-[60px] z-50 rounded-md bg-white relative'}>
+                <div className={'absolute top-[-45px] left-0 flex flex-row gap-[20px]'}>
+                    <Buttons style={regOrSig === 'signIn' ? 'bg-white w-[120px]' : 'w-[120px]'}
+                             onClick={() => setRegOrSig(RegOrSig.signIn)}
+                    >
+                        Вход
+                    </Buttons>
+                    <Buttons style={regOrSig === 'signUp' ? 'bg-white w-[170px]' : 'bg-red w-[170px]'}
+                             onClick={() => setRegOrSig(RegOrSig.signUp)}
                     >
                         Регистрация
                     </Buttons>
                 </div>
-            </form>
+                <div className={'flex flex-row gap-[20px] mb-[20px] justify-center'}>
+                    <p className={'text-center text-[30px]'}>
+                        {
+                            regOrSig === 'signIn'
+                                ? 'Вход в учетную запись'
+                                : 'Регистрация'
+                        }
+                    </p>
+                </div>
+                {
+                    regOrSig === 'signIn'
+                        ? <SignIn/>
+                        : <SignUp/>
+                }
+            </div>
         </div>
     );
 }
