@@ -19,7 +19,7 @@ function streetCheck(cards: Card []): Card [] {
 
 
     for (let i = cards.length - 1; i >= 0; --i) {
-        console.log(streetCards)
+
         if (cards[i - 1] && cards[i].rank === cards[i - 1].rank + 1 && streetCards.length <= 5) {
             streetCards.push(cards[i])
         }
