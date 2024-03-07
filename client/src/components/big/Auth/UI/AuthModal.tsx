@@ -11,14 +11,14 @@ const AuthModal = () => {
     return (
         <div className={'flex justify-center items-center w-screen h-screen bg-[#985ACE] backdrop-opacity-10'}>
 
-            <div className={'max-w-[500px] tra w-full px-[50px] py-[60px] z-50 rounded-md bg-white relative'}>
-                <div className={'absolute top-[-45px] left-0 flex flex-row gap-[20px]'}>
-                    <Buttons style={regOrSig === 'signIn' ? 'bg-white w-[120px]' : 'w-[120px]'}
+            <div className={'max-w-[500px] tra w-full px-[50px] py-[60px] z-50 rounded-md relative bg-white'}>
+                <div className={'absolute top-[-45px] left-0 flex flex-row'}>
+                    <Buttons style={regOrSig === 'signIn' ? 'bg-white w-[120px]' : 'bg-green-50 w-[120px]'}
                              onClick={() => setRegOrSig(RegOrSig.signIn)}
                     >
                         Вход
                     </Buttons>
-                    <Buttons style={regOrSig === 'signUp' ? 'bg-white w-[170px]' : 'bg-red w-[170px]'}
+                    <Buttons style={regOrSig === 'signUp' ? 'bg-white w-[170px]' : 'bg-green-50 w-[170px]'}
                              onClick={() => setRegOrSig(RegOrSig.signUp)}
                     >
                         Регистрация
