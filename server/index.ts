@@ -1,17 +1,18 @@
+
+require('dotenv').config()
 const express = require('express')
 export const sequelize = require('./db')
+export const { router } = require('./routes/index')
 const models = require('./models/models')
-const {graphqlHTTP} = require('express-graphql')
 const cors = require('cors')
+const schema = require('./schema')
 
 const PORT = 5000;
 
 const app = express()
-
-/*app.use('/graphql', graphqlHTTP({
-    graphiql: true,
-    schema: schema,
-}))*/
+app.use(cors());
+app.use(express.json());
+app.use('/api', router)
 
 const start = async () => {
     try {
