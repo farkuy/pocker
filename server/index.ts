@@ -6,6 +6,7 @@ const router = require('./routes/index')
 const models = require('./models/models')
 const cors = require('cors')
 const schema = require('./schema')
+const requestError = require('./middleware/ErrorRequestMiddleware')
 
 const PORT = 5000;
 
@@ -13,6 +14,10 @@ const app = express()
 app.use(cors());
 app.use(express.json());
 app.use('/api', router)
+
+
+//Все middleware должны быть в конце
+app.use(requestError)
 
 const start = async () => {
     try {
