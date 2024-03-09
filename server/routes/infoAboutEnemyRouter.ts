@@ -1,4 +1,9 @@
-import {router} from '../index'
+export {};
+const Router = require('express')
+const router = new Router()
+const infoAboutEnemyController = require('../controllers/infoAboutEnemyController')
 
-router.post('/', );
-router.get('/:id',)
+router.post('/', infoAboutEnemyController.create);
+router.get('/:id', infoAboutEnemyController.getInfo)
+
+module.exports = router
