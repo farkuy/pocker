@@ -1,10 +1,11 @@
 import React from 'react';
-import AuthModal from "./components/big/Auth/UI/AuthModal";
+import NavBar from "./components/big/NavBar/NavBar";
 
 function App() {
   return (
     <div className="App">
-      <AuthModal/>
+        <NavBar/>
+      Что вы делаете в моем холодильнике
     </div>
   );
 }
